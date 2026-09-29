@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1F5E3B">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<title>डिजिटल बिजक</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%231F5E3B'/%3E%3Ctext x='50' y='66' font-size='52' text-anchor='middle' fill='white' font-family='sans-serif'%3E%E0%A4%AC%E0%A4%BF%3C/text%3E%3C/svg%3E">
+<style>
+:root{--bg:#f3f5f2;--card:#fff;--ink:#1c2420;--mute:#66726b;--line:#d5ddd7;--g:#1F5E3B;--soft:#e8f0ea}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121815;--card:#1b2320;--ink:#e8eee9;--mute:#93a099;--line:#33403a;--soft:#22302a}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans Devanagari",system-ui,sans-serif;font-size:15px;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.wrap{max-width:560px;margin:0 auto;padding:10px}
+.sheet{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.head{background:var(--g);color:#fff;text-align:center;padding:14px 10px 11px}
+.head small{opacity:.85;font-size:11px}
+.head h1{margin:3px 0 0;font-size:21px;font-weight:600;line-height:1.25}
+.head .en{font-size:10px;letter-spacing:.08em;opacity:.9;margin-top:2px}
+.sub{text-align:center;padding:9px 10px;border-bottom:1px solid var(--line);font-size:12px;color:var(--mute)}
+.sub b{color:var(--ink);font-weight:500}
+input,select{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:9px 10px;width:100%;min-width:0}
+input:focus,select:focus{outline:2px solid var(--g);outline-offset:1px}
+.mobline{margin-top:6px;font-size:13px;font-weight:500;color:var(--ink);line-height:1.6}
+.bank{font-size:11px;line-height:1.55;color:var(--ink);text-align:left}
+.bhool{margin-top:6px;color:var(--mute)}
+.mobset{margin-top:10px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.mobset summary{cursor:pointer;font-weight:500;color:var(--g)}
+.mobset .grid{margin-top:10px}
+.sec{padding:10px;border-bottom:1px solid var(--line)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+label{display:block;font-size:12px;color:var(--mute);margin-bottom:3px}
+.full{grid-column:1/-1}
+h2{margin:0 0 8px;font-size:14px;font-weight:600;color:var(--g)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) h2{color:#7fc79c}}
+.row{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:6px;margin-bottom:6px;align-items:end}
+.amt{grid-column:1/-1;display:flex;justify-content:space-between;font-size:13px;color:var(--mute);padding:0 2px 8px;border-bottom:1px dashed var(--line)}
+.amt b{color:var(--ink);font-weight:600}
+button{font:inherit;cursor:pointer;border-radius:8px;padding:10px 12px;border:1px solid var(--g);background:transparent;color:var(--g);font-weight:500}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) button.ghost{color:#7fc79c;border-color:#7fc79c}}
+button.solid{background:var(--g);color:#fff}
+.tot{display:flex;justify-content:space-between;padding:10px;background:var(--soft);font-weight:600;border-bottom:1px solid var(--line)}
+.exp{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:5px 0;border-bottom:1px dashed var(--line)}
+.exp span{flex:1}
+.exp input{width:120px;text-align:right}
+.net{display:flex;justify-content:space-between;align-items:center;background:var(--g);color:#fff;padding:13px 10px}
+.net small{display:block;font-size:11px;opacity:.85}
+.net strong{font-size:23px}
+.foot{display:flex;justify-content:space-between;align-items:flex-end;padding:26px 12px 12px;font-size:12px;color:var(--mute)}
+.sig{border-top:1px solid var(--mute);padding-top:3px;min-width:110px;text-align:center}
+.bar{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.bar button{flex:1 1 100px}
+.bar button:disabled{opacity:.5;cursor:default}
+.pv span,span.pv{border-bottom:1px solid var(--line);display:inline-block;width:100%;padding:6px 2px 4px;font-weight:500}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="sheet" id="sheetRoot">
+  <div class="head">
+    <small>प्रो० धन्नू साहनी</small>
+    <h1>जय माँ शीतला वेजिटेबल कं०</h1>
+    <div class="en">JAI MAA SHITLA VEGETABLE CO.</div>
+  </div>
+  <div class="sub">
+    मटर, मिर्चा, टमाटर, लहसुन, अदरक के कमीशन एजेन्ट एवं थोक विक्रेता<br>
+    <b>दुकान नं० 50, न्यू सब्जी मण्डी, ख्वाजाजहांपुर, मऊनाथ भंजन (उ०प्र०) 275101</b>
+    <div id="mobline" class="mobline"></div>
+  </div>
+
+  <div class="sec grid">
+    <div><label>बिजक नं०</label><input id="no" inputmode="numeric"></div>
+    <div><label>दिनांक</label><input id="date" type="date"></div>
+    <div class="full"><label>श्रीमान (पार्टी का नाम)</label><input id="party"></div>
+    <div><label>माल / पैकेट</label><input id="pkt" placeholder="मिर्चा · 50"></div>
+    <div><label>गाड़ी नं०</label><input id="car"></div>
+  </div>
+
+  <div class="sec">
+    <h2>माल विवरण</h2>
+    <label>रेट किस हिसाब से है?</label>
+    <select id="unit" style="margin-bottom:10px"><option value="kg">प्रति किलो</option><option value="q">प्रति क्विंटल (100 किलो)</option></select>
+    <div id="rows"></div>
+    <button class="ghost" id="add" type="button">+ एक और लाइन जोड़ें</button>
+  </div>
+
+  <div class="tot"><span>योग (कच्ची बिक्री)</span><span id="gross">₹ 0</span></div>
+
+  <div class="sec">
+    <h2>खर्च का विवरण</h2>
+    <div id="exps"></div>
+  </div>
+
+  <div class="tot"><span>योग खर्च</span><span id="texp">₹ 0</span></div>
+
+  <div class="net"><span>बिजक का कुल योग<small>(पक्की बिक्री)</small></span><strong id="net">₹ 0</strong></div>
+
+  <div class="foot">
+    <div class="bank" id="bankbox"></div>
+    <span class="sig">हस्ताक्षर</span>
+  </div>
+</div>
+
+<div class="bar">
+  <button class="ghost" id="reset" type="button">नया बिजक</button>
+  <button class="solid" id="dlimg" type="button">📷 Image डाउनलोड</button>
+  <button class="solid" id="dlpdf" type="button">📄 PDF डाउनलोड</button>
+</div>
+<p id="msg" style="text-align:center;font-size:12px;color:var(--mute);min-height:34px"></p>
+
+<details class="mobset">
+  <summary>मोबाइल नंबर बदलें (5 तक)</summary>
+  <div class="grid" id="medit"></div>
+</details>
+
+<details class="mobset">
+  <summary>बैंक विवरण भरें / बदलें</summary>
+  <div class="grid">
+    <div class="full"><label>बैंक का नाम</label><input class="bk" placeholder="State Bank of India"></div>
+    <div class="full"><label>खाता धारक का नाम</label><input class="bk"></div>
+    <div class="full"><label>खाता नंबर</label><input class="bk" inputmode="numeric"></div>
+    <div><label>IFSC कोड</label><input class="bk"></div>
+    <div><label>शाखा</label><input class="bk"></div>
+  </div>
+  <p style="font-size:11px;color:var(--mute);margin:8px 0 0">ये जानकारी सिर्फ इसी फोन में सेव रहती है, किसी और को नहीं दिखती।</p>
+</details>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+var EXP=["कमीशन","पल्लेदारी","लेबर खर्च","ट्रक भाड़ा","मण्डी शुल्क","नगदी","तहरीर"];
+var $=function(i){return document.getElementById(i)};
+var store={get:function(k){try{return localStorage.getItem(k)}catch(e){return null}},set:function(k,v){try{localStorage.setItem(k,v);return true}catch(e){return false}}};
+var fmt=function(n){return "₹ "+Math.round(n).toLocaleString("en-IN")};
+var num=function(v){var x=parseFloat(v);return isNaN(x)?0:x};
+
+function addRow(){
+  var d=document.createElement("div");
+  d.innerHTML='<div class="row"><div><label>विवरण</label><input class="d" placeholder="50 बोरी"></div><div><label>वज़न (किलो)</label><input class="w" inputmode="decimal"></div><div><label>रेट</label><input class="r" inputmode="decimal"></div><div class="amt"><span>रकम</span><b class="a">₹ 0</b></div></div>';
+  $("rows").appendChild(d.firstChild);
+}
+EXP.forEach(function(n){
+  var d=document.createElement("div");d.className="exp";
+  d.innerHTML='<span>'+n+'</span><input class="e" inputmode="decimal" placeholder="—">';
+  $("exps").appendChild(d);
+});
+
+function calc(){
+  var g=0,div=$("unit").value==="q"?100:1;
+  document.querySelectorAll("#rows .row").forEach(function(r){
+    var a=num(r.querySelector(".w").value)*num(r.querySelector(".r").value)/div;
+    r.querySelector(".a").textContent=fmt(a);g+=a;
+  });
+  var e=0;document.querySelectorAll(".e").forEach(function(i){e+=num(i.value)});
+  $("gross").textContent=fmt(g);$("texp").textContent=fmt(e);$("net").textContent=fmt(g-e);
+}
+function fresh(){
+  $("rows").innerHTML="";addRow();
+  ["party","pkt","car"].forEach(function(i){$(i).value=""});
+  document.querySelectorAll(".e").forEach(function(i){i.value=""});
+  var last=parseInt(store.get("lastNo"),10);
+  $("no").value=isNaN(last)?"":String(last+1);
+  $("date").value=new Date().toISOString().slice(0,10);
+  calc();
+}
+document.addEventListener("input",calc);
+$("add").onclick=addRow;
+
+/* मोबाइल नंबर: शुरू में खाली, फोन में सेव होते हैं */
+var saved=null;
+try{saved=JSON.parse(store.get("mobs2"))}catch(e){}
+var mrows=(saved&&saved.length===5)?saved:[["",""],["",""],["",""],["",""],["",""]];
+for(var k=0;k<5;k++){
+  var w=document.createElement("div");w.className="full";
+  w.innerHTML='<div class="grid"><div><label>नंबर '+(k+1)+'</label><input class="mn" inputmode="tel"></div><div><label>मालिक का नाम</label><input class="mo"></div></div>';
+  $("medit").appendChild(w);
+}
+var mns=document.querySelectorAll(".mn"),mos=document.querySelectorAll(".mo");
+mns.forEach(function(i,k){i.value=mrows[k][0]});
+mos.forEach(function(i,k){i.value=mrows[k][1]});
+function showMobs(){
+  var order=[],map={};
+  mns.forEach(function(i,k){
+    var n=i.value.trim(),o=mos[k].value.trim();if(!n)return;
+    if(!(o in map)){map[o]=[];order.push(o)}
+    map[o].push(n);
+  });
+  var box=$("mobline");box.innerHTML="";
+  order.forEach(function(o){
+    var d=document.createElement("div");
+    d.textContent=map[o].join(" / ")+(o?" — "+o:"");
+    box.appendChild(d);
+  });
+}
+function saveMobs(){
+  var a=[];mns.forEach(function(i,k){a.push([i.value,mos[k].value])});
+  store.set("mobs2",JSON.stringify(a));showMobs();
+}
+document.querySelectorAll(".mn,.mo").forEach(function(i){i.addEventListener("input",saveMobs)});
+
+/* बैंक विवरण: शुरू में खाली, फोन में सेव होता है */
+var bks=document.querySelectorAll(".bk");
+var bsaved=null;
+try{bsaved=JSON.parse(store.get("bank1"))}catch(e){}
+if(bsaved&&bsaved.length===5){bks.forEach(function(i,k){i.value=bsaved[k]})}
+function showBank(){
+  var v=[];bks.forEach(function(i){v.push(i.value.trim())});
+  var box=$("bankbox");box.innerHTML="";
+  var labels=["Bank Name : ","Name A/c : ","A/c. No. : ","IFSC Code : ","Branch : "];
+  v.forEach(function(t,k){
+    if(!t)return;
+    var d=document.createElement("div");
+    d.textContent=labels[k]+t;
+    if(k===0)d.style.fontWeight="700";
+    box.appendChild(d);
+  });
+  var b=document.createElement("div");b.className="bhool";b.textContent="भूल चूक लेनी देनी";
+  box.appendChild(b);
+}
+function saveBank(){
+  var a=[];bks.forEach(function(i){a.push(i.value)});
+  store.set("bank1",JSON.stringify(a));showBank();
+}
+bks.forEach(function(i){i.addEventListener("input",saveBank)});
+
+$("reset").onclick=function(){fresh();$("msg").textContent="नया खाली बिजक तैयार है।"};
+
+function sanitize(s){
+  s=(s||"").trim();
+  if(!s)return "बिजक";
+  return s.replace(/[\\/:*?"<>|]+/g,"_").replace(/\s+/g,"_");
+}
+function fileBase(){
+  var party=sanitize($("party").value);
+  var d=($("date").value||"").split("-");
+  var disp=d.length===3?(d[2]+"-"+d[1]+"-"+d[0]):"";
+  return "vijak_"+party+(disp?"_"+disp:"");
+}
+function buildPrintable(){
+  var clone=$("sheetRoot").cloneNode(true);
+  clone.querySelectorAll("input,select").forEach(function(el){
+    var span=document.createElement("span");
+    var val;
+    if(el.tagName==="SELECT"){
+      val=el.options[el.selectedIndex]?el.options[el.selectedIndex].text:"";
+    }else if(el.type==="date"){
+      var p=(el.value||"").split("-");
+      val=p.length===3?(p[2]+"-"+p[1]+"-"+p[0]):el.value;
+    }else{
+      val=el.value;
+    }
+    if(el.classList.contains("e")&&!val)val="—";
+    span.textContent=val;
+    span.className="pv";
+    var right=el.classList.contains("r")||el.classList.contains("w")||el.classList.contains("e");
+    span.style.textAlign=right?"right":"left";
+    el.parentNode.replaceChild(span,el);
+  });
+  return clone;
+}
+function renderCanvas(cb){
+  if(!window.html2canvas){$("msg").textContent="Download tool load nahi hua, internet check karke page reload karein.";setBusy(false);return;}
+  var clone=buildPrintable();
+  var holder=document.createElement("div");
+  holder.style.position="fixed";holder.style.left="-9999px";holder.style.top="0";holder.style.width="560px";
+  holder.appendChild(clone);
+  document.body.appendChild(holder);
+  window.html2canvas(clone,{scale:2,backgroundColor:getComputedStyle(document.body).backgroundColor}).then(function(canvas){
+    document.body.removeChild(holder);
+    cb(canvas);
+  }).catch(function(){
+    document.body.removeChild(holder);
+    setBusy(false);
+    $("msg").textContent="Download nahi ho paya. Screenshot le lein.";
+  });
+}
+function setBusy(b){$("dlimg").disabled=b;$("dlpdf").disabled=b;$("dlimg").textContent=b?"बन रहा है...":"📷 Image डाउनलोड";$("dlpdf").textContent=b?"बन रहा है...":"📄 PDF डाउनलोड"}
+function doSave(filename,blob){
+  var url=URL.createObjectURL(blob);
+  var a=document.createElement("a");
+  a.href=url;a.download=filename;
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  setTimeout(function(){URL.revokeObjectURL(url)},4000);
+  setBusy(false);
+  store.set("lastNo",String(parseInt($("no").value,10)||0));
+  $("msg").textContent='"'+filename+'" आपके फोन के "Downloads" फोल्डर में सेव हो गई है। नया बिजक बनाने के लिए "नया बिजक" दबाएँ।';
+}
+$("dlimg").onclick=function(){
+  setBusy(true);
+  renderCanvas(function(canvas){
+    canvas.toBlob(function(blob){doSave(fileBase()+".png",blob)},"image/png");
+  });
+};
+$("dlpdf").onclick=function(){
+  setBusy(true);
+  renderCanvas(function(canvas){
+    if(!window.jspdf){setBusy(false);$("msg").textContent="PDF tool load nahi hua, internet check karke page reload karein.";return;}
+    var pdf=new window.jspdf.jsPDF({unit:"px",format:[canvas.width,canvas.height]});
+    pdf.addImage(canvas.toDataURL("image/png"),"PNG",0,0,canvas.width,canvas.height);
+    doSave(fileBase()+".pdf",pdf.output("blob"));
+  });
+};
+showMobs();
+showBank();
+fresh();
+</script>
+</body>
+</html>
